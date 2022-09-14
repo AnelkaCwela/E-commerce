@@ -297,7 +297,7 @@ namespace OurShop.Controllers
             smtp.UseDefaultCredentials = false;
             smtp.EnableSsl = true;
 
-            smtp.Credentials = new System.Net.NetworkCredential("infoslostfound@gmail.com", "Cwela@6968");
+            smtp.Credentials = new System.Net.NetworkCredential("infoslostfound@gmail.com", "Password");
 
             await smtp.SendMailAsync(Mail);
             return RedirectToAction("EmailSendLink", "Account");
