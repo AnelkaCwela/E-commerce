@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_HomeLogin";
+    ViewData["Title"] = "Chose";
+}
+<div class="card align-content-center">
+    <div class="card-body">
+        <div class="card">
+
+                <a asp-controller="Account" asp-action="Register" class="btn btn-sm btn-dark text-primary form-control" value="Sell" asp-route-id="@true" ></a>
+ 
+        </div>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <div class="card">
+   
+                <a asp-controller="Account" asp-action="Register" class="btn btn-sm btn-dark text-primary form-control" value="Buy" asp-route-id="@false"></a>
+      
+        </div>
+    </div>
+</div>

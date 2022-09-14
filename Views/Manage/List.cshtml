@@ -1,0 +1,93 @@
+﻿@model IEnumerable<IteamViewModel>
+
+@{
+
+    ViewData["Title"] = "Product List";
+    Layout = "_HomeLayout";
+}
+
+
+
+
+<section class="home-section">
+
+    <p>
+        <a asp-controller="Manage" asp-action="Product">Create New</a>
+    </p>
+    <div class="card-header">
+        List of Product
+    </div>
+    <table class="table table-hover table-responsive table-responsive-sm table-responsive-xl table-responsive-md table-striped ">
+
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.IteamModel.ItermName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IteamModel.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IteamModel.DiscountPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IteamModel.ItermDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryModel.CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GanderModel.Gander)
+                </th>
+                <th>
+                    Product
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                var IteamId = item.IteamModel.IteamId;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IteamModel.ItermName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IteamModel.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IteamModel.DiscountPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IteamModel.ItermDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryModel.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GanderModel.Gander)
+                </td>
+                <td>
+                    <img class="img-rounded img-responsive border-primary" role="img" src="data:image/jpg;base64,@System.Convert.ToBase64String(item.IteamModel.ImageIteam)" width="100" height="100" asp-append-version="true" />
+                </td>
+                <td>
+
+                    <a asp-controller="Manage" class="btn btn-sm btn-danger" asp-action="Delete" asp-route-Id="@IteamId">Delete</a>|
+                    <a asp-controller="Manage" class="btn btn-sm btn-dark" asp-action="UpdateItem" asp-route-Id="@IteamId">Update</a>|
+                    <a asp-controller="Manage" class="btn btn-sm btn-outline-dark" asp-action="Item" asp-route-Id="@IteamId">Detail</a>|
+
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+
+</section>
+

@@ -1,0 +1,40 @@
+﻿@model OurShop.Models.DataModel.OderTypeModel
+
+@{
+    ViewData["Title"] = "Create OderType";
+    Layout = "_HomeLayout";
+}
+
+
+<section class="home-section">
+    <h4>Create OderType</h4>
+    <hr />
+    <div class="alert-primary font-weight-bolder">
+        @ViewBag.Success
+    </div>
+    <div class="alert-danger font-weight-bolder">
+        @ViewBag.USuccess
+    </div>
+    <a class="text-dark" asp-area="" asp-controller="ManageIteam" asp-action="Index">Back</a>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CreateOderType">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="OderType" class="control-label"></label>
+                    <input asp-for="OderType" class="form-control" />
+                    <span asp-validation-for="OderType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" style="width:auto" value="Create" class="btn btn-primary">Create OderType</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

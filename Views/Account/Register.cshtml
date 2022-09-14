@@ -1,0 +1,61 @@
+﻿@model RegisterUserModel
+
+@{
+    Layout = "_HomeLogin";
+    ViewData["Title"] = "SignUp";
+}
+
+
+
+<h4 class="card-header">SignUp</h4>
+<hr />
+@*@if (Model.Is==true)
+{
+    <div class="card align-content-center">
+        <div class="card-body">
+            <div class="card-text">
+              For  Bussiness Registration , Identity document  and Bussness Registration document files Required <a asp-action="Welcome" asp-controller="Account">Back</a>
+            </div>
+        </div>
+    </div>
+}*@
+<div class="card-body">
+    <form asp-action="Register" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @*<input type="hidden" asp-for="Is" />*@
+        <div class="form-group">
+            <label asp-for="Phone" class="control-label"></label>
+            <input asp-for="Phone" placeholder="Phone Number" class="form-control card" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="Code" class="control-label"></label>
+            <input asp-for="Code" placeholder="Verification Code" class="form-control card" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" placeholder="Email Address" class="form-control card" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" placeholder="Enter Password" class="form-control card" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword" class="control-label"></label>
+            <input asp-for="ConfirmPassword" placeholder="Confirm Password" class="form-control card" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="SignUp" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

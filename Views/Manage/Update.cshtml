@@ -1,0 +1,101 @@
+﻿@model IteamDetailUpdateData
+@{
+
+    ViewData["Title"] = "Product Details";
+    Layout = "_HomeLayout";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<style>
+    .slider {
+        width: 350px;
+        height: 200px;
+        position: relative;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        position: absolute;
+    }
+</style>
+
+<section class="home-section">
+    <div class="card mb-3">
+        <div class="card-text text-center">
+            Iteam Name :@Model.item.ItermName
+        </div>
+        <div class="justify-content-md-center">
+            <div class="slider">
+                @foreach (var itemA in Model.images)
+                {
+
+                    <div class="card-img">
+                        <span class="img-responsive">
+                            <img class="img-rounded img-responsive mySlides" role="img" src="data:image/jpg;base64,@System.Convert.ToBase64String(@itemA.ImageData)" width="200" height="200" asp-append-version="true" />
+                        </span>
+
+                    </div>
+                }
+            </div>
+            &nbsp;
+            &nbsp;
+            <div>
+                <button class="carousel-item-left btn" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="carousel-item-right btn" onclick="plusDivs(+1)">&#10095;</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <h5> Price : @Model.item.Price</h5>
+
+            <h5>
+                Gander : <select asp-for="@Model.item.GanderId" class="form-control" asp-items="ViewBag.GanderId"></select>
+            </h5>
+            <h5>
+                Category : <select asp-for="@Model.item.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+            </h5>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Delete" asp-controller="Manage" class="btn btn-sm btn-danger" asp-route-Id="@Model.item.IteamId">Remove Product</a>
+            <a asp-action="UpdateItem" asp-controller="Manage" class="btn btn-sm btn-success" asp-route-Id="@Model.item.IteamId">Update Product</a>
+
+            <a asp-action="Upload" asp-controller="Manage" class="btn btn-sm btn-info" asp-route-Id="@Model.item.IteamId">Upload More Images</a>
+        </div>
+    </div>
+    
+    <br />
+    <hr />
+    <h1> Update Product Details</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Update" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="@Model.item.IteamId" />
+                <input type="hidden" asp-for="IteamDetailId" />
+                <input type="hidden" asp-for="@Model.item.CategoryId" />
+                <input type="hidden" asp-for="@Model.item.GanderId" />
+                <input type="hidden" asp-for="@Model.item.Price" />
+
+                <input type="hidden" asp-for="@Model.item.ItermName" />
+                <input type="hidden" asp-for="@Model.item.ImageIteam" />
+                <div class="form-group">
+                    <label asp-for="NoOfIteam" class="control-label"></label>
+                    <input asp-for="NoOfIteam" value="" class="form-control" />
+                    <span asp-validation-for="NoOfIteam" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SizeId" class="control-label"></label>
+                    <select asp-for="SizeId" class="form-control" asp-items="ViewBag.SizeId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ColorId" class="control-label"></label>
+                    <select asp-for="ColorId" class="form-control" asp-items=" ViewBag.ColorId"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

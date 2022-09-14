@@ -1,0 +1,38 @@
+﻿@model OurShop.Models.DataModel.SeviceStauseModel
+
+@{
+    ViewData["Title"] = "Create Sevice Stause";
+    Layout = "_HomeLayout";
+}
+    <section class="home-section">
+        <h4>Create Sevice Stause</h4>
+        <hr />
+        <div class="alert-primary font-weight-bolder">
+            @ViewBag.Success
+        </div>
+        <div class="alert-danger font-weight-bolder">
+            @ViewBag.USuccess
+        </div>
+        <a class="text-dark" asp-area="" asp-controller="ManageServe" asp-action="Index">Back</a>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreateSeviceStause">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="SeviceStause" class="control-label"></label>
+                        <input asp-for="SeviceStause" class="form-control" />
+                        <span asp-validation-for="SeviceStause" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" style="width:auto" value="Create" class="btn btn-primary">Create Sevice Stause</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

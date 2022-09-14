@@ -1,0 +1,50 @@
+﻿@model OurShop.Models.Databinding.IteamDatamodel
+@{
+    ViewData["Title"] = "Brand Detail";
+    Layout = "_HomeLayout";
+}
+
+<style>
+    .slider {
+        width: 350px;
+        height: 200px;
+        position: relative;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        position: absolute;
+        //opacity:0;
+    }
+</style>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<div class="slider">
+        <img class="mySlides" src="~/Images/Image2.PNG" />
+        <img class="mySlides" src="~/Images/Image1.jpg" />
+        <img class="mySlides" src="~/Images/Image3.PNG" />
+        <img class="mySlides" src="~/Images/Image4.jpg" />
+        <img class="mySlides" src="~/Images/Image5.jpg" />
+</div>
+<button class="carousel-control-prev-icon carousel-item-left " onclick="plusDivs(-1)">&#10094;</button>
+<button class="carousel-control-next-icon carousel-item-right" onclick="plusDivs(+1)">&#10095;</button>
+<script type="text/javascript">
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length };
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+</script>

@@ -1,0 +1,37 @@
+﻿@model OurShop.Models.Databinding.IteamDatamodel
+@{
+    ViewData["Title"] = "Brand Detail";
+    Layout = "_HomeLayout";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<form>
+    <div class="form-group">
+        <label asp-for="TypeId" class="control-label"></label>
+        <select asp-for="TypeId" id="typeid" class="form-control" asp-items=" ViewBag.TypeId">
+         <option >
+
+         </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId" class="control-label"></label>
+        
+        <select asp-for="CategoryId" id="categoryId" class="form-control" asp-items="@(new SelectList(string.Empty,"Value","Text"))"></select>
+    </div>
+
+</form>
+<script>
+    $(function () {
+        $("#typeid").change(function () {
+            $.getJSON("Manage/GetTypeById", { id: $("#typeid").val(), function(d) })
+            $("#categoryId").empty();
+            var row = "";
+            $.each(d, function (i, v) {
+                row += "<option value=" + v.value + ">"+v.text+"</option>";
+            }
+            );
+            $("#categoryId").htm.row(row);
+           
+        })
+    });
+</script>

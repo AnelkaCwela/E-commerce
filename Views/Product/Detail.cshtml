@@ -1,0 +1,128 @@
+﻿@model IteamViewCData
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+
+    <link rel="shortcut icon" href="./Product/images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="./Product/css/styles.css" />
+    <title>Boy’s T-Shirt - Codevo</title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <style>
+        .slider {
+            width: 350px;
+            height: 200px;
+            position: relative;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <!-- Product Details -->
+    <div class="card justify-content-center align-content-center" style="width:40rem" >
+        <section class="section product-detail">
+            <div class="details container-md">
+                <div class="left">
+                    <div class="justify-content-md-center">
+                        <div class="slider">
+                            @foreach (var itemA in Model.images)
+                            {
+
+                <div class="card-img">
+                    <span class="img-responsive">
+                        <img class="img-rounded img-responsive mySlides" role="img" src="data:image/jpg;base64,@System.Convert.ToBase64String(@itemA.ImageData)" width="200" height="200" asp-append-version="true" />
+                    </span>
+
+                </div>}
+                        </div>
+                        &nbsp;
+                        &nbsp;
+                        <div>
+                            <button class="carousel-item-left btn" onclick="plusDivs(-1)">&#10094;</button>
+                            <button class="carousel-item-right btn" onclick="plusDivs(+1)">&#10095;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <h1><a href="#">@ViewBag.Category</a> / @Model.item.ItermName</h1>
+
+                    @if (ViewBag.Data == true)
+                    {
+                <div class="card-header alert alert-danger">
+                    Out of Stock
+                </div> }
+            else
+            {
+                var returnUrl = ViewContext.HttpContext.Request.PathAndQuery();
+                <form method="post" asp-action="AddToCart" asp-controller="Cart">
+                    <select asp-for="SizeId" class="alert alert-info small" asp-items="ViewBag.SizeId"></select>
+                    &nbsp;&nbsp;
+                    <span> <select asp-for="ColorId" class="alert alert-primary small" asp-items=" ViewBag.ColorId"></select></span>
+                    <span> </span>
+
+                    <input type="hidden" asp-for="returnUrl" value="@returnUrl" />
+                    <input type="hidden" asp-for="id" value="@Model.item.IteamId" />
+                    No of item : <input asp-for="No" type="text" placeholder="1">
+                    <br />
+                    <input type="submit" class="btn-sm btn-dark" value="Add To Cart" />
+                </form>}
+                  
+
+                    <h3>R @Model.item.Price</h3>
+                   
+                    <br />
+                </div>
+            </div>
+        </section>
+    </div>
+    <br />
+    <!-- Related -->
+    <section class="section featured">
+        <div class="top container">
+            <h1></h1>
+            <a href="#" class="view-more">View more Related Products</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- End Footer -->
+    <!-- GSAP -->
+    <!-- Custom Script -->
+
+</body>
+
+</html>
+<script type="text/javascript">
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length };
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+</script>
+<script src="~/Product/js/index.js"></script>
