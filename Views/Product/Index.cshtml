@@ -1,0 +1,108 @@
+﻿@model IEnumerable<PageModel>
+<h4 class="text-center">Brands</h4>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<div class="card-header">
+    <a style="text-decoration:none" class="rounded" asp-area="" asp-controller="Product" asp-action="Product">
+        <img src="~/Images/Profile.jpg" class="card-img-top img-responsive" style="height:50px;width:50px;border-radius:50%;" />
+        Products
+    </a>
+</div>
+<hr />
+@if (Model.Any())
+{
+
+    @foreach (var Data in Model.OrderByDescending(p => p.Like))
+    {
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-12 col-xl-4">
+
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body text-center">
+                            <div class="mt-3 mb-4">
+                                <img role="img" src="data:image/jpg;base64,@System.Convert.ToBase64String(Data.BrandLogo)" asp-append-version="true"
+                                     class="rounded-circle img-fluid" style="width: 100px;" />
+                            </div>
+                            <h4 class="mb-2"><a style="text-decoration:none" asp-controller="Product" asp-action="Page" asp-route-Id="@Data.SupplierId">@Data.BrandName</a></h4>
+                            <p class="text-muted mb-4">@Data.BrandSlogan</p>
+                            <div class="mb-4 pb-2">
+
+                            </div>
+
+                            @if (Data.Follow == true)
+                            {
+                                <a style="text-decoration:none" class="btn btn-primary btn-rounded btn-sm" asp-controller="Product" asp-action="Follow" asp-route-Id="@Data.SupplierId">
+                                    Following
+                                </a>
+                                @*<input type="hidden" id="Follow" name="@Data.SupplierId" value="@Data.SupplierId" />
+            <button type="button" id="FollowId" class="btn btn-primary btn-rounded btn-sm">Following</button>*@
+                            }
+                            else
+                            {
+                                <a style="text-decoration:none" class="btn btn-primary btn-rounded btn-sm" asp-controller="Product" asp-action="Follow" asp-route-Id="@Data.SupplierId">
+                                    Follow
+                                </a>
+                                @*<input type="hidden" id="Follow" name="@Data.SupplierId" value="@Data.SupplierId" />
+            <button type="button" id="FollowId" class="btn btn-primary btn-rounded btn-sm">Follow</button>*@
+                            }
+                            <hr class="my-4">
+                            <div class="d-flex justify-content-between text-center mt-5 mb-2">
+                                <div>
+                                    <p class="mb-2 h5">@Data.Like</p>
+                                    <i class="fa fa-heart me-2"></i>
+                                    <p class="text-muted mb-0">Likes</p>
+                                </div>
+                                <div class="px-3">
+                                    <p class="mb-2 h5">@Data.Views</p>
+                                    <i class="fa fa-eye me-2"></i>
+                                    <p class="text-muted mb-0">Views</p>
+                                </div>
+                                <div>
+
+                                    <p class="mb-2 h5">@Data.Post</p>
+                                    <i class="fa fa-folder-plus me-2"></i>
+                                    <a style="text-decoration:none" asp-controller="Product" asp-action="Page" asp-route-Id="@Data.SupplierId">
+                                        <p class="mb-0">Post</p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p class="mb-2 h5">@Data.Follows</p>
+                                    <i class="fa fa-poll me-2"></i>
+                                    <p class="text-muted mb-0">Follow</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
+
+}
+else
+{
+    <div class="card-header text-center">
+        No Brands Yet
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#FollowId').click(function () {
+
+            var $this = $(this);
+            if ($this.html() == "Follow") {
+                $this.html('Following');
+            }
+            else {
+                $this.html('Follow');
+            }
+                var ddlsourse = "#Follow";
+                $.getJSON("/Product/Follow", {id: $(ddlsourse).val() }, function (data) {
+                    $("#Follow").empty();                 
+                });
+            });
+        });
+
+</script>
