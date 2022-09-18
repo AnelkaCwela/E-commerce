@@ -1,0 +1,72 @@
+﻿@model IEnumerable<RegisterModel>
+
+@{
+
+    ViewData["Title"] = "Users";
+    Layout = "Anele";
+}
+
+<div class="card-header text-center">
+    Register users
+</div>
+<div class="text-center align-content-center">
+        <a style="text-decoration:none;" class="mt-2 btn-sm btn-secondary" asp-controller="Account" asp-action="Supplier">Add User <i class="fas fa-plus-circle"></i></a>
+   
+</div>
+<table class="table table-hover table-responsive table-responsive-sm table-responsive-xl table-responsive-md table-striped ">
+    @if (Model.Any())
+    {
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>.
+                    <td>
+                        <a asp-controller="Account" class="btn btn-sm btn-danger" asp-action="Remove" asp-route-Id="@item.Id">Remove</a>
+                    </td>
+                  
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <tr>
+            <th class="card-header text-center">
+                <br />
+               Nothing to display yey
+            </th>
+
+        </tr>
+    }
+
+</table>

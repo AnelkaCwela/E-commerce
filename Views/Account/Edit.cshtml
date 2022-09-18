@@ -1,0 +1,27 @@
+﻿@model UserEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<h4 class="card-header">Update Phonumber</h4>
+@if (ViewBag.su!=null)
+{
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Update Successfully</h4>
+    </div>
+}
+<hr />
+<div class="card-body">
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Phone" class="control-label">Phone Number</label>
+            <input asp-for="Phone" placeholder="Phone Number" class="form-control card" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

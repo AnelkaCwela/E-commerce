@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Account";
+}
+<h4 class="text-center"> Settings</h4>
+<hr />
+<div class="card align-content-center">
+    <div class="card-body">
+        <div class="card">
+            <form asp-controller="Account" asp-action="ChangePassword" method="get">
+                <input type="submit" class="btn btn-sm btn-dark form-control" value="Change Password" />
+            </form>
+        </div>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <div class="card">
+            <form asp-controller="Account" asp-action="Edit" method="get">
+                <input type="submit" class="btn btn-sm btn-dark form-control" value="Change Phone Number" />
+            </form>
+        </div>
+
+    </div>
+</div>

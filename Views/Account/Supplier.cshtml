@@ -1,0 +1,50 @@
+﻿@model RegisterModel
+
+@{
+    ViewData["Title"] = "Link User";
+    Layout = "Anele";
+}
+<h4 class="text-center">Link user to this Account</h4>
+<hr />
+<form asp-action="Supplier" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example1">First name</label>
+                <input asp-for="Name" placeholder="First Name" required id="form3Example1" class="form-control" />
+
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example2">Last name</label>
+                <input asp-for="Surname" placeholder="Last Name" required id="form3Example2" class="form-control" />
+
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form3Example3">Email address</label>
+        <input asp-for="Email" placeholder="Email Address" required id="form3Example3" class="form-control" />
+
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form3Example3">Phone Number</label>
+        <input asp-for="Phone" placeholder="Phone Number" required id="form3Example3" class="form-control" />
+
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+  
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
+
+    <!-- Register buttons -->
+</form>

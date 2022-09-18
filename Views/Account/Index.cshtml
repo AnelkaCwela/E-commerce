@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Account";
+}
+<h4 class="text-center">Login Procces</h4>
+<hr />
+<body>
+    <div class="card align-content-center">
+        <div class="card-body">
+
+
+
+            <div class="card">
+                <form asp-controller="Account" asp-action="Register" method="get">
+                    <input name="Sell" hidden value="Sell">
+                    <div>
+                        <input class="btn btn-primary " style="border:solid;border-color:black;color:black;" type="checkbox" required />&nbsp;&nbsp; <strong class="text-muted">
+
+                            <a asp-area="" asp-controller="Home" asp-action="Privacy">Acccept terms and Conditions</a>
+                        </strong>
+                    </div>
+                    <input type="submit" class="btn btn-sm btn-dark form-control" value="Register To Sell Online" />
+                </form>
+            </div>
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            <div class="card">
+                <form asp-controller="Account" asp-action="Register" method="get">
+                    <input name="Buy" hidden value="Sell">
+                    <input type="submit" class="btn btn-sm btn-dark form-control" value="Register Account" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>

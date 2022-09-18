@@ -1,0 +1,60 @@
+﻿@inject SignInManager<UserPlusModel> _signInManager
+@{
+    ViewData["Title"] = "Welcome";
+    Layout = "Anele";
+}
+<h4 class="text-center align-middle">Welcome to Si Store</h4>
+<body>
+    <div>
+        <a asp-controller="Account" asp-action="Documentation"> Documentation</a>
+    </div>
+    <div class="">
+        @if (User.IsInRole("Sell") && (_signInManager.IsSignedIn(User)))
+        {
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Well done! few more step to put your product online</h4>
+                <p> We are currently validate your document that you have attached and infomation you given , this will only take only 24 hours . we will notify you by email if all things are uptodate </p>
+                <hr>
+                <p2 class="mb-0">As soon we are done will enable your business Account. so you can post your product online</p2>
+            </div>
+        }
+        else if (User.IsInRole("Blocked") && (_signInManager.IsSignedIn(User)))
+        {
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Your Account is currently block!</h4>
+                <p> You have lost access to your store , this means  you have violated community guidelines </p>
+                <hr>
+                <p2 class="mb-0">please contact owner . so you can Acces your bussiness account</p2>
+            </div>
+        }
+        else if (User.IsInRole("Stand Plan") && (_signInManager.IsSignedIn(User)))
+        {
+
+
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Welcome Back @User.Identity.Name</h4>
+                <p> "Sell the interview before you attempt to sell the product" - Author: Frank Bettger</p>
+            </div>
+        }
+        else if (User.IsInRole("Free Plan") && (_signInManager.IsSignedIn(User)))
+        {
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Welcome Back @User.Identity.Name</h4>
+                <p> "Sell the interview before you attempt to sell the product" - Author: Frank Bettger</p>
+                <hr>
+                <p>
+                    Subscribe to Stand Plan Able Access Online payment with <strong>payfast</strong> and Upload 50 product and more and 2 User Account   <a asp-controller="Home" asp-action="Plan">
+                        Subscription
+                    </a>
+                </p>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Welcome  @User.Identity.Name</h4>
+                <p> "Sell the interview before you attempt to sell the product" - Author: Frank Bettger</p>
+            </div>
+        }
+    </div>
+</body>

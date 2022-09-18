@@ -1,0 +1,104 @@
+﻿@model RegisterUserModel
+
+@{
+    ViewData["Title"] = "SignUp";
+}
+<h4 class="text-center">SignUp</h4>
+<hr />
+@if (Model.Is == true)
+{
+    <div class="card align-content-center">
+        <div class="card-body">
+            <div class="card-text">
+                In oder to sell with us and in the process of registration we will need you to upload , <span class="font-weight-bolder">Identity document</span> , <span class="font-weight-bolder">Proof Of residence files Required (pdf format)</span> <a asp-action="Info" asp-controller="Account"> for More Info</a> about files requied  <a asp-action="Index" asp-controller="Account">Back</a>
+            </div>
+        </div>
+    </div>
+}
+
+<form asp-action="Register" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Is" />
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example1">First name</label>
+                <input asp-for="Name" placeholder="First Name" required id="form3Example1" class="form-control" />
+
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example2">Last name</label>
+                <input asp-for="Surname" placeholder="Last Name" required id="form3Example2" class="form-control" />
+
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form3Example3">Email address</label>
+        <input asp-for="Email" placeholder="Email Address" required id="form3Example3" class="form-control" />
+
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form3Example3">Phone Number</label>
+        <input asp-for="Phone" placeholder="Phone Number" required id="form3Example3" class="form-control" />
+
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example4">Password</label>
+                <input required asp-for="Password" placeholder="Password" id="form3Example4" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example5">Confirm Password</label>
+                <input required placeholder="Confirm password" asp-for="ConfirmPassword" id="form3Example5" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+
+
+    <!-- Register buttons -->
+</form>
+<div class="text-center">
+    <p>or sign up with:</p>
+    @if (Model.ExternalLogins.Count > 0)
+    {
+        <form asp-action="ExternalLogin" method="post">
+            @foreach (var log in Model.ExternalLogins)
+            {
+                if (log.DisplayName == "Google")
+                {
+                    <button type="submit" value="@log.Name" title="Login using @log.DisplayName" disabled name="provider" class="btn btn-primary btn-floating mx-1">
+                        <i class="fab fa-google"></i>
+                    </button>
+                }
+            }
+
+        </form>
+    }
+    else
+    {
+        <button disabled type="button" class="btn btn-primary btn-floating mx-1">
+            <i class="fab fa-google"></i>
+        </button>
+    }
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,35 @@
+﻿@model ChangePassword
+
+@{
+    ViewData["Title"] = "Add Password";
+}
+
+
+
+<h4 class="text-center">Add Passowrd</h4>
+<hr />
+
+<form asp-action="ChangePassword" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example1">New Password</label>
+                <input asp-for="NewPassword" placeholder="New Password" required id="form3Example1" class="form-control" />
+
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example2">Confirm Password</label>
+                <input asp-for="ConfirmPassword" placeholder="Confirm password" required id="form3Example2" class="form-control" />
+
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Add Password</button>>
+</form>
