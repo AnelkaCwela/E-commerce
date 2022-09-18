@@ -64,8 +64,8 @@ namespace OurShop
 
             services.AddAuthentication().AddGoogle(p =>
             {
-                p.ClientId = "517899196110-n7menp3ujbitonm67b029d1ioadvd64p.apps.googleusercontent.com";
-                p.ClientSecret = "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";
+                p.ClientId = "*********-*********.apps.googleusercontent.com";
+                p.ClientSecret = "GOCSPX-************";
 
             });
 
