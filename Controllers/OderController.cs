@@ -203,12 +203,12 @@ namespace OurShop.Controllers
             Mail.IsBodyHtml = true;
             Mail.From = new MailAddress("no-reply@sistore.co.za");
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "plesk6000a.trouble-free.net.";
+            smtp.Host = "*****";
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;
             //smtp.EnableSsl = false;
 
-            smtp.Credentials = new System.Net.NetworkCredential("no-reply@sistore.co.za", "$Cg9xb86");
+            smtp.Credentials = new System.Net.NetworkCredential("no-reply@sistore.co.za", "Password");
 
             await smtp.SendMailAsync(Mail);
         }
@@ -253,12 +253,12 @@ namespace OurShop.Controllers
 
             Mail.From = new MailAddress("no-reply@sistore.co.za");
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "plesk6000a.trouble-free.net.";
+            smtp.Host = "*********";
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;
             //smtp.EnableSsl = false;
 
-            smtp.Credentials = new System.Net.NetworkCredential("no-reply@sistore.co.za", "$Cg9xb86");
+            smtp.Credentials = new System.Net.NetworkCredential("no-reply@sistore.co.za", "Password");
 
             await smtp.SendMailAsync(Mail);
         }
